@@ -1,0 +1,2 @@
+#!/bin/bash
+ssh -i /mnt/HDD1/llaves_google/google_compute_engine -t migue@35.238.9.25 'nohup /home/migue/iniciar-proyecto-loteria'
