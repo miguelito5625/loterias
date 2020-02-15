@@ -6,6 +6,7 @@ import { PerfilUsuarioComponent } from './componentes/perfil-usuario/perfil-usua
 import { MenuPrincipalComponent } from './componentes/menus/menu-principal/menu-principal.component';
 import { AutenticacionGuard } from './guards/autenticacion.guard';
 import { RegistrarUsuarioComponent } from './componentes/registrar-usuario/registrar-usuario.component';
+import { BolidoListaDeNumerosComponent } from './componentes/loterias/bolido/bolido-lista-de-numeros/bolido-lista-de-numeros.component';
 
 
 const routes: Routes = [
@@ -34,6 +35,10 @@ const routes: Routes = [
   {
     path: 'menu-principal',
     component: MenuPrincipalComponent
+  },
+  {
+    path: 'loterias/bolido/lista-de-numeros',
+    component: BolidoListaDeNumerosComponent
   }
 ];
 

@@ -139,6 +139,9 @@ export class AutenticacionService {
 
   }
 
+  obtenerUsuarios() {
+    return this.afs.collection('users').snapshotChanges();
+}
 
   /* Setting up user data when sign in with username/password, 
   sign up with username/password and sign in with social auth  
@@ -151,7 +154,7 @@ export class AutenticacionService {
       displayName: user.displayName,
       photoURL: user.photoURL,
       emailVerified: user.emailVerified,
-      ultimoInicioDeSesion: new Date()
+      ultimoInicioDeSesion: Date()
     }
     console.log(userData);
 

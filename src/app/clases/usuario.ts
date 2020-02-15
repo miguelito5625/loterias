@@ -4,5 +4,5 @@ export interface Usuario {
     displayName: string;
     photoURL: string;
     emailVerified: boolean;
-    ultimoInicioDeSesion: Date;
+    ultimoInicioDeSesion: string;
 }

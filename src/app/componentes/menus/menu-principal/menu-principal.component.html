@@ -16,9 +16,15 @@
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
                     content.</p> -->
     
-                    <div class="d-flex flex-row-reverse">
+                    <div *ngIf="item.habilitado" class="d-flex flex-row-reverse">
     
-                        <a class="btn btn-primary" style="color: white;">Comprar numeros</a>
+                        <button routerLink="{{ item.urlRedireccion }}" class="btn btn-primary" style="color: white;">Comprar numeros</button>
+    
+                    </div>
+
+                    <div *ngIf="!item.habilitado" class="d-flex flex-row-reverse">
+    
+                        <button class="btn btn-primary" style="color: white;" disabled>Comprar numeros</button>
     
                     </div>
                     
