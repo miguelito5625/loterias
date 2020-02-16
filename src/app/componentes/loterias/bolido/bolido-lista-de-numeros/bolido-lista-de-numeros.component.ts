@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { NumerosBolidoService } from 'src/app/servicios/numeros-bolido.service';
 import { NumeroBolido } from 'src/app/clases/numero-bolido';
+import { CarritoDeComprasService } from 'src/app/servicios/carrito-de-compras.service';
+import { ItemCarrito } from 'src/app/clases/item-carrito';
 
 declare var $: any;
 
@@ -13,13 +15,16 @@ declare var $: any;
 export class BolidoListaDeNumerosComponent implements OnInit {
 
   constructor(
-    private servicioNumeroBolido: NumerosBolidoService
+    private servicioNumeroBolido: NumerosBolidoService,
+    private servicioCarritoDeCompras: CarritoDeComprasService
   ) { }
 
   ngOnInit() {
     this.obtenerNumerosBolido();
     // this.servicioNumeroBolido.generarNumeros();
+    
   }
+
 
   numerosBolido: NumeroBolido[];
 
@@ -81,6 +86,21 @@ export class BolidoListaDeNumerosComponent implements OnInit {
     console.log(numero);
     this.numeroSeleccionado = numero;
     $('#modalDetalleNumero').modal('show');
+  }
+
+  agregarAlCarrito(){
+
+    let itemCarrito: ItemCarrito = {
+      uid: '',
+      loteria: 'bolido',
+      numero: this.numeroSeleccionado.numero,
+      cantidadComprado: this.txtCantidadAComprar.value,
+      premio: this.txtCantidadAGanar.value
+    }
+
+    this.servicioCarritoDeCompras.agregarAlCarrito(itemCarrito);
+    $('#modalDetalleNumero').modal('hide');
+
   }
 
 

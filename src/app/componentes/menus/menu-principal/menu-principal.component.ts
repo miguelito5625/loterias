@@ -23,7 +23,7 @@ export class MenuPrincipalComponent implements OnInit {
           this.usuarios.push(x as Usuario);
         });
 
-      console.log(this.usuarios);
+      // console.log(this.usuarios);
       
     });
   }

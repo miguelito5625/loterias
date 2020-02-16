@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AutenticacionService } from 'src/app/servicios/autenticacion.service';
 import { JqueryConfirmService } from 'src/app/servicios/jquery-confirm.service';
 import { NodeSnackbarService } from 'src/app/servicios/node-snackbar.service';
+import { CarritoDeComprasService } from 'src/app/servicios/carrito-de-compras.service';
 
 // import * as Snackbar from 'node-snackbar';
 
@@ -17,21 +18,22 @@ declare var Snackbar: any;
 
 export class BarraNavegacionComponent implements OnInit {
 
+  itemsEnElCarrito:number= 0;
+
   constructor(
     private servicioAutenticacion: AutenticacionService,
     private servicioAlertas: JqueryConfirmService,
-    private nodeSnackbar: NodeSnackbarService
+    private nodeSnackbar: NodeSnackbarService,
+    private servicioCarritoDeCompras: CarritoDeComprasService
   ) { }
 
   ngOnInit() {
 
-    // if (window.screen.width <= 768) { // 768px portrait
-    //   this.mobile = true;
-    // }
-    
+    this.servicioCarritoDeCompras.obtenerTotalItems.subscribe(message=> this.itemsEnElCarrito = message);
+
   }
 
-  // mobile: boolean;
+  
 
   public sesionActiva(): boolean {
     

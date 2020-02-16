@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PerfilUsuarioComponent implements OnInit {
 
+  correoDeUsuario = localStorage.getItem('correo');
+
   constructor() { }
 
   ngOnInit() {
