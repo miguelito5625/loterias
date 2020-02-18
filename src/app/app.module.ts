@@ -18,6 +18,7 @@ import { environment } from '../environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegistrarUsuarioComponent } from './componentes/registrar-usuario/registrar-usuario.component';
 import { BolidoListaDeNumerosComponent } from './componentes/loterias/bolido/bolido-lista-de-numeros/bolido-lista-de-numeros.component';
+import { DiariaListaDeNumerosComponent } from './componentes/loterias/diaria/diaria-lista-de-numeros/diaria-lista-de-numeros.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { BolidoListaDeNumerosComponent } from './componentes/loterias/bolido/bol
     PerfilUsuarioComponent,
     MenuPrincipalComponent,
     RegistrarUsuarioComponent,
-    BolidoListaDeNumerosComponent
+    BolidoListaDeNumerosComponent,
+    DiariaListaDeNumerosComponent
   ],
   imports: [
     BrowserModule,

@@ -30,8 +30,8 @@ export class CarritoDeComprasService {
     var posicion = 0;
 
     await this.itemsEnElCarrito.forEach((numero, index) => {
-      if (numero.numero == item.numero) {
-        console.log('igual', index);
+      if (numero.numero == item.numero && numero.loteria == item.loteria) {
+        console.log('encontrado un item igual en la posicion', index);
         estaEnElCarrito = true;
         posicion = index;
       }

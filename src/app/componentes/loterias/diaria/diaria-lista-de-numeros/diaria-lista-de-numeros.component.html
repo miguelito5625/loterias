@@ -1,0 +1,88 @@
+<!-- <p>diaria-lista-de-numeros works!</p> -->
+
+
+<h2 class="text-center">Diaria</h2>
+
+
+<ul class="list-group mb-3">
+
+    <li class="list-group-item">
+        <div class="input-group">
+            <input type="number" [formControl]="busqueda" (keyup)="onKeyUpBuscarNumero()" class="form-control"
+                placeholder="Buscar...">
+            <div class="input-group-append">
+                <span class="input-group-text"><i class="fas fa-search"></i></span>
+            </div>
+        </div>
+    </li>
+
+    <li *ngFor="let numero of numerosBuscados" class="list-group-item">
+
+        <div *ngIf="numero.habilitado" class="input-group input-group-lg">
+            <input readonly value="{{ numero.numero }}" type="text" class="form-control"
+                placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <div class="input-group-append">
+                <button (click)="detalleVentaDelNumero(numero)" class="btn btn-primary" type="button"
+                    id="button-addon2">Comprar</button>
+            </div>
+        </div>
+
+        <div *ngIf="!numero.habilitado" class="input-group input-group-lg">
+            <input readonly value="{{ numero.numero }}" type="text" class="form-control"
+                placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-secondary" type="button" id="button-addon2" disabled>Comprar</button>
+            </div>
+        </div>
+
+    </li>
+
+
+</ul>
+
+
+<div *ngIf="!datosListos" class="text-center">
+    <div class="spinner-grow text-primary" style="width: 6rem; height: 6rem;" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalDetalleNumero" tabindex="-1" role="dialog" aria-labelledby="modalDetalleNumeroLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalDetalleNumeroLabel">Detalle de compra</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h3 class="text-center">Numero: {{ numeroSeleccionado.numero }}</h3>
+
+                <div class="input-group input-group-lg mb-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="idCantidadDelNumero">Cantidad Q</span>
+                    </div>
+                    <input type="number" [formControl]="txtCantidadAComprar" (keyup)="onKeyUpCalcularPremio()"
+                        class="form-control" aria-label="Sizing example input" aria-describedby="idCantidadDelNumero">
+                </div>
+
+                <div class="input-group input-group-lg">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="idCantidadAGanar">Posile Premio Q</span>
+                    </div>
+                    <input type="number" [formControl]="txtCantidadAGanar" class="form-control"
+                        aria-label="Sizing example input" aria-describedby="idCantidadAGanar" readonly>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" id="btnAgregarAlCarrito" (click)="agregarAlCarrito()" class="btn btn-primary">Agregar al carrito</button>
+            </div>
+        </div>
+    </div>
+</div>

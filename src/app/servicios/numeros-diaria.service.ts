@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { NumeroBolido } from '../clases/numero-bolido';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
-export class NumerosBolidoService {
+export class NumerosDiariaService {
 
   constructor(
     public afs: AngularFirestore
@@ -13,7 +12,7 @@ export class NumerosBolidoService {
   { }
 
   obtenerNumeros() {
-    return this.afs.collection('numerosBolido', ref => ref.orderBy("numero", "asc")).snapshotChanges();
+    return this.afs.collection('numerosDiaria', ref => ref.orderBy("numero", "asc")).snapshotChanges();
 }
 
  async generarNumeros(){
@@ -23,7 +22,7 @@ export class NumerosBolidoService {
 
     if(i<10){
 
-      await this.afs.collection('numerosBolido').add(
+      await this.afs.collection('numerosDiaria').add(
         {
           numero: `0${i}`,
           habilitado: true
@@ -32,7 +31,7 @@ export class NumerosBolidoService {
 
     }else{
 
-     await this.afs.collection('numerosBolido').add(
+     await this.afs.collection('numerosDiaria').add(
         {
          
           numero: `${i}`,
