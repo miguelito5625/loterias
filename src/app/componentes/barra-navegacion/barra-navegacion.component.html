@@ -24,7 +24,7 @@
       
       <a *ngIf="!sesionActiva()" routerLink="/iniciar-sesion" data-toggle="tooltip" data-placement="bottom" title="Carrito de compras" style="color: white;"> iniciar sesion <i class="fas fa-sign-in-alt fa-lg"></i> </a>
       
-      <a *ngIf="sesionActiva()" routerLink="/carrito-compras" class="mr-3" data-toggle="tooltip" data-placement="bottom" title="Carrito de compras" style="color: white;"><i class="fas fa-shopping-cart fa-lg"></i><span class="badge badge-light">{{ itemsEnElCarrito }}</span> </a>
+      <a *ngIf="sesionActiva()" routerLink="/carrito-compras" class="mr-3" data-toggle="tooltip" data-placement="bottom" title="Carrito de compras" style="color: white;"><i class="fas fa-shopping-cart fa-lg"></i><span class="badge badge-light">{{ servicioCarritoDeCompras.itemsEnElCarrito.length }}</span> </a>
       
       <div *ngIf="sesionActiva()" class="dropdown">
         <a class="dropdown-toggle ml-auto" style="color: white;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

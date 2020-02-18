@@ -24,12 +24,12 @@ export class BarraNavegacionComponent implements OnInit {
     private servicioAutenticacion: AutenticacionService,
     private servicioAlertas: JqueryConfirmService,
     private nodeSnackbar: NodeSnackbarService,
-    private servicioCarritoDeCompras: CarritoDeComprasService
+    public servicioCarritoDeCompras: CarritoDeComprasService
   ) { }
 
   ngOnInit() {
 
-    this.servicioCarritoDeCompras.obtenerTotalItems.subscribe(message=> this.itemsEnElCarrito = message);
+    // this.servicioCarritoDeCompras.obtenerTotalItems.subscribe(message=> this.itemsEnElCarrito = message);
 
   }
 

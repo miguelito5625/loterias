@@ -33,8 +33,8 @@ export class BolidoListaDeNumerosComponent implements OnInit {
   datosListos: boolean = false;
 
   busqueda = new FormControl('');
-  txtCantidadAComprar = new FormControl('');
-  txtCantidadAGanar = new FormControl('0');
+  txtCantidadAComprar = new FormControl('1');
+  txtCantidadAGanar = new FormControl('80');
 
   //datos al azar para evitar un error mientras descarga los datos
   numeroSeleccionado: NumeroBolido = {
@@ -83,16 +83,17 @@ export class BolidoListaDeNumerosComponent implements OnInit {
   }
 
   detalleVentaDelNumero(numero: NumeroBolido){
-    console.log(numero);
+    $('#btnAgregarAlCarrito').prop('disabled', false);
+    // console.log(numero);
     this.numeroSeleccionado = numero;
     $('#modalDetalleNumero').modal('show');
   }
 
   agregarAlCarrito(){
-
+    $('#btnAgregarAlCarrito').prop('disabled', true);
     let itemCarrito: ItemCarrito = {
       uid: '',
-      loteria: 'bolido',
+      loteria: 'Bolido',
       numero: this.numeroSeleccionado.numero,
       cantidadComprado: this.txtCantidadAComprar.value,
       premio: this.txtCantidadAGanar.value
@@ -100,6 +101,10 @@ export class BolidoListaDeNumerosComponent implements OnInit {
 
     this.servicioCarritoDeCompras.agregarAlCarrito(itemCarrito);
     $('#modalDetalleNumero').modal('hide');
+
+    this.txtCantidadAComprar.setValue('1');
+    this.txtCantidadAGanar.setValue('80');
+    
 
   }
 

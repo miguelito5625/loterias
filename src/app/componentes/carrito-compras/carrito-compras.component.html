@@ -1,1 +1,90 @@
-<p>carrito-compras works!</p>
+<!-- <p>carrito-compras works!</p> -->
+
+<h2 class="text-center">Carrito</h2>
+
+
+<ul class="list-group list-group-flush mb-3">
+
+    <!-- <li class="list-group-item">
+        <div class="input-group">
+            <input type="number" [formControl]="busqueda" (keyup)="onKeyUpBuscarNumero()" class="form-control"
+                placeholder="Buscar...">
+            <div class="input-group-append">
+                <span class="input-group-text"><i class="fas fa-search"></i></span>
+            </div>
+        </div>
+    </li> -->
+
+    <li *ngFor="let item of servicioCarritoDeCompras.itemsEnElCarrito" class="list-group-item">
+
+        <div class="card">
+            <h5 class="card-header text-center">{{item.loteria}} Numero: {{ item.numero }}</h5>
+            <div class="card-body">
+                <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+                <!-- <h5 class="card-subtitle mb-2 text-muted">Loteria: {{item.loteria}}</h5> -->
+                <h5 class="card-subtitle mb-2 text-muted">Cantidad: Q{{item.cantidadComprado}}</h5>
+                <h5 class="card-subtitle mb-2 text-muted">Premio: Q{{item.premio}}</h5>
+                <button class="btn btn-danger mr-3" (click)="eliminarItemCarrito(item)">Quitar</button>
+                <button class="btn btn-success" (click)="detalleItemDelCarrito(item)">Editar</button>
+            </div>
+        </div>
+
+    </li>
+
+
+</ul>
+
+
+<!-- <div *ngIf="!datosListos" class="text-center">
+    <div class="spinner-grow text-primary" style="width: 6rem; height: 6rem;" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div> -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalDetalleNumero" tabindex="-1" role="dialog" aria-labelledby="modalDetalleNumeroLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalDetalleNumeroLabel">Editar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h3 class="text-center">Numero: {{ numeroSeleccionado.numero }}</h3>
+
+                <div class="input-group input-group-lg mb-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="idTxtLoteria">Loteria</span>
+                    </div>
+                    <input type="text" [formControl]="txtLoteria" class="form-control"
+                        aria-label="Sizing example input" aria-describedby="idTxtLoteria" readonly>
+                </div>
+
+                <div class="input-group input-group-lg mb-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="idCantidadDelNumero">Cantidad Q</span>
+                    </div>
+                    <input type="number" [formControl]="txtCantidadAComprar" (keyup)="onKeyUpCalcularPremio()"
+                        class="form-control" aria-label="Sizing example input" aria-describedby="idCantidadDelNumero">
+                </div>
+
+                <div class="input-group input-group-lg">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="idCantidadAGanar">Posile Premio Q</span>
+                    </div>
+                    <input type="number" [formControl]="txtCantidadAGanar" class="form-control"
+                        aria-label="Sizing example input" aria-describedby="idCantidadAGanar" readonly>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" (click)="actualizarCarrito()" class="btn btn-primary">Actualizar compra</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -6,6 +6,7 @@ import { Usuario } from '../clases/usuario';
 import { auth } from 'firebase';
 import { NodeSnackbarService } from './node-snackbar.service';
 import { JqueryConfirmService } from './jquery-confirm.service';
+import translate from 'translate';
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +52,7 @@ export class AutenticacionService {
 
   // Registro usuario con email/password
   registroUsuario(email, password) {
+
     var modalCargando = this.servicioJqueryComfirm.modalCargando();
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
       .then((result) => {
@@ -59,7 +61,7 @@ export class AutenticacionService {
         console.log(result);
         modalCargando.close();
         this.router.navigate(['/']);
-        this.servicioSnackbar.usuarioRegistrado();
+        this.servicioSnackbar.mostrarSnackBarArriba('Usuario registrado, intenta iniciar sesion');
 
 
         // this.SendVerificationMail();
@@ -67,9 +69,18 @@ export class AutenticacionService {
       }).catch((error) => {
         // window.alert(error.message)
         modalCargando.close();
-        this.servicioJqueryComfirm.mensajeDeError(error.message);
-        
-        
+        translate.engine = 'google';
+        translate.key = 'AIzaSyC753Q4lRbPglDsCKMVEN68qdsWT3spbJQ';
+        translate(error.message, 'es').then(data => {
+          this.servicioJqueryComfirm.mensajeDeError(data);
+        },
+          err => {
+            modalCargando.close();
+            console.log('error en la traduccion');
+            this.servicioJqueryComfirm.mensajeDeError('');
+          });
+
+        // this.servicioJqueryComfirm.mensajeDeError(errorTraducido);
       })
   }
 
@@ -128,12 +139,22 @@ export class AutenticacionService {
         localStorage.setItem('correo', result.user.email);
         this.router.navigate(['/']);
         modalCargando.close();
-        this.servicioSnackbar.sesionIniciada();
+        this.servicioSnackbar.mostrarSnackBarArriba('Sesion iniciada');
 
 
       }).catch((error) => {
-        window.alert(error.message)
+        // window.alert(error.message)
         modalCargando.close();
+        translate.engine = 'google';
+        translate.key = 'AIzaSyC753Q4lRbPglDsCKMVEN68qdsWT3spbJQ';
+        translate(error.message, 'es').then(data => {
+          this.servicioJqueryComfirm.mensajeDeError(data);
+        },
+          err => {
+            modalCargando.close();
+            console.log('error en la traduccion');
+            this.servicioJqueryComfirm.mensajeDeError('');
+          });
       })
 
 
@@ -141,7 +162,7 @@ export class AutenticacionService {
 
   obtenerUsuarios() {
     return this.afs.collection('users').snapshotChanges();
-}
+  }
 
   /* Setting up user data when sign in with username/password, 
   sign up with username/password and sign in with social auth  
@@ -171,7 +192,7 @@ export class AutenticacionService {
       localStorage.removeItem('sesionActiva');
       this.router.navigate(['/']);
       modalCargando.close();
-      this.servicioSnackbar.sesionCerrada();
+      this.servicioSnackbar.mostrarSnackBarArriba('Sesion cerrada');
     })
   }
 }
