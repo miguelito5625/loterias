@@ -33,7 +33,7 @@ export class InicioSesionComponent implements OnInit {
 
     if(!this.formularioInicioSesion.controls.correo.valid){
       $('#idTxtCorreo').addClass('is-invalid');
-      this.servicioSnackbar.mensajeError('correo no valido');
+      this.servicioSnackbar.mostrarSnackBarArriba('correo no valido');
       return;
     }
 

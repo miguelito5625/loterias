@@ -72,5 +72,9 @@ export class CarritoComprasComponent implements OnInit {
     this.servicioCarritoDeCompras.eliminarItemCarrito(pos);
   }
 
+  realizarElPago(){
+    alert('Funcion no disponible');
+  }
+
 
 }

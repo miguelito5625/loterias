@@ -5,15 +5,24 @@
 
 <ul class="list-group list-group-flush mb-3">
 
-    <!-- <li class="list-group-item">
-        <div class="input-group">
-            <input type="number" [formControl]="busqueda" (keyup)="onKeyUpBuscarNumero()" class="form-control"
-                placeholder="Buscar...">
-            <div class="input-group-append">
-                <span class="input-group-text"><i class="fas fa-search"></i></span>
+    <li class="list-group-item">
+
+        <div class="card">
+            <h5 class="card-header text-center">Total a pagar: Q{{this.servicioCarritoDeCompras.totalAPagar}}</h5>
+            <div class="card-body">
+                <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+                <!-- <h5 class="card-subtitle mb-2 text-muted">Loteria: {{item.loteria}}</h5> -->
+                <h5 class="card-subtitle mb-2 text-muted">Numeros a comprar: {{this.servicioCarritoDeCompras.itemsEnElCarrito.length}}</h5>
+                <!-- <h5 class="card-subtitle mb-2 text-muted">Premio: Q{{item.premio}}</h5> -->
+                <!-- <button class="btn btn-danger mr-3" (click)="eliminarItemCarrito(item)">Quitar</button> -->
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-primary" (click)="realizarElPago()">Pagar <i class="far fa-credit-card"></i></button>
+                </div>
             </div>
         </div>
-    </li> -->
+
+    </li>
+
 
     <li *ngFor="let item of servicioCarritoDeCompras.itemsEnElCarrito" class="list-group-item">
 
@@ -33,13 +42,6 @@
 
 
 </ul>
-
-
-<!-- <div *ngIf="!datosListos" class="text-center">
-    <div class="spinner-grow text-primary" style="width: 6rem; height: 6rem;" role="status">
-        <span class="sr-only">Loading...</span>
-    </div>
-</div> -->
 
 
 <!-- Modal -->
