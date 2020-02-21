@@ -1,8 +1,13 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ItemCarrito } from '../clases/item-carrito';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { NodeSnackbarService } from './node-snackbar.service';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { PagoStripe } from '../clases/pago-stripe';
+import { catchError, retry } from 'rxjs/operators';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +16,8 @@ export class CarritoDeComprasService {
 
   constructor(
     public afs: AngularFirestore,
-    private servicioSnackBar: NodeSnackbarService
+    private servicioSnackBar: NodeSnackbarService,
+    private http: HttpClient
   ) { }
 
   itemsEnElCarrito: ItemCarrito[] = [
@@ -74,7 +80,30 @@ export class CarritoDeComprasService {
     this.itemsEnElCarrito.splice(posicion, 1);
     this.servicioSnackBar.mostrarSnackBarArriba('Numero eliminado');
   }
+  
+  baseUrl = 'http://localhost:3000';
 
+  pagoConStripe(pagoStripe): Observable<PagoStripe>{
+    return this.http.post<PagoStripe>(this.baseUrl + '/realizarpago', pagoStripe)
+    .pipe(
+      retry(1),
+      catchError(this.errorHandl)
+    )
+  }
+
+ // Error handling
+ errorHandl(error) {
+  let errorMessage = '';
+  if(error.error instanceof ErrorEvent) {
+    // Get client-side error
+    errorMessage = error.error.message;
+  } else {
+    // Get server-side error
+    errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+  }
+  console.log(errorMessage);
+  return throwError(errorMessage);
+}
 
 
 }
