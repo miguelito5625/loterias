@@ -62,4 +62,22 @@ export class JqueryConfirmService {
     });
   }
 
+  mensajeDeExito(txtError:string) {
+    $.confirm({
+      title: 'Correcto',
+      content: txtError,
+      type: 'green',
+      typeAnimated: true,
+      buttons: {
+        close: {
+          text: 'Ok',
+          btnClass: 'btn-blue',
+          action: function () {
+            
+          }
+        }
+      }
+    });
+  }
+
 }

@@ -25,12 +25,12 @@ export class CarritoDeComprasService {
       uid: '',
       loteria: 'Bolido',
       numero: '21',
-      cantidadComprado: '1',
+      cantidadComprado: '10',
       premio: '80'
     }
   ];
 
-  totalAPagar: number = 1.00;
+  totalAPagar: number = 10.00;
 
   async agregarAlCarrito(item: ItemCarrito) {
 

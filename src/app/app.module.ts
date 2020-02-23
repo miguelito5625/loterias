@@ -24,6 +24,7 @@ import { DiariaListaDeNumerosComponent } from './componentes/loterias/diaria/dia
 import { NgxStripeModule } from 'ngx-stripe';
 
 import { HttpClientModule } from '@angular/common/http';
+import { PruebaComponent } from './componentes/prueba/prueba.component';
 
 
 
@@ -37,7 +38,8 @@ import { HttpClientModule } from '@angular/common/http';
     MenuPrincipalComponent,
     RegistrarUsuarioComponent,
     BolidoListaDeNumerosComponent,
-    DiariaListaDeNumerosComponent
+    DiariaListaDeNumerosComponent,
+    PruebaComponent
   ],
   imports: [
     BrowserModule,

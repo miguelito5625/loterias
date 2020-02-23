@@ -1,0 +1,118 @@
+<h1>Custom Stripe Form</h1>
+
+<!-- <form action="" method="POST" id="payment-form" (submit)="getToken()"> -->
+<!-- <span class="payment-message">{{message}}</span> -->
+
+<!-- <div class="form-row">
+    <label>
+      <span>Card Number</span>
+      <input [formControl]="cardNumber" name="card-number" type="text" size="20" data-stripe="number">
+    </label>
+  </div>
+
+  <div class="form-row">
+    <label>
+      <span>Expiration (MM/YY)</span>
+      <input [formControl]="expiryMonth" name="expiry-month" type="text" size="2" data-stripe="exp_month">
+    </label>
+    <span> / </span>
+    <input [formControl]="expiryYear" name="expiry-year" type="text" size="2" data-stripe="exp_year">
+  </div>
+
+  <div class="form-row">
+    <label>
+      <span>CVC</span>
+      <input [formControl]="cvc" name="cvc" type="text" size="4" data-stripe="cvc">
+    </label>
+  </div>
+
+  <button type="button" class="btn btn-primary" (click)="getToken()">Pagar</button> -->
+<!-- <button type="button" class="btn btn-primary">Primary</button> -->
+
+<!-- <input type="submit" value="Submit Payment"> -->
+<!-- </form> -->
+
+
+
+
+<!-- Modal realizar pago -->
+<div class="modal fade" id="modalRealizarPago" tabindex="-1" role="dialog" aria-labelledby="modalRealizarPagoLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title font-weight-bold" id="modalRealizarPagoLabel">Realizar pago</h5>
+                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button> -->
+            </div>
+            <div class="modal-body">
+                <!-- <h3 class="text-center">Realizar pago</h3> -->
+
+                <div class="row">
+                    <div class="col-12">
+
+                        <label for="idTxtNombreTarjeta">Nombre</label>
+                        <div class="input-group mb-3">
+                            <input type="text" id="idTxtNombreTarjeta" class="form-control"
+                                aria-label="Amount (to the nearest dollar)" placeholder="Ingrese su nombre">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="far fa-user"></i></span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-12">
+                        <label for="idTxtNumeroTarjeta">Tarjeta de credito o debito</label>
+                        <div class="input-group mb-2">
+                            <input type="text" [formControl]="cardNumber" id="idTxtNumeroTarjeta" class="form-control"
+                                aria-label="Amount (to the nearest dollar)" placeholder="0000 0000 0000 0000">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="far fa-credit-card"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="idTxtMesTarjeta">Mes</label>
+                            <input type="text" [formControl]="expiryMonth" class="form-control" id="idTxtMesTarjeta"
+                                aria-describedby="emailHelp" placeholder="00" maxlength="2">
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="idTxtAnioTarjeta">Año</label>
+                            <input type="text" [formControl]="expiryYear" class="form-control" id="idTxtAnioTarjeta"
+                                aria-describedby="emailHelp" placeholder="00" maxlength="2">
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="idTxtCvcTarjeta">CVC</label>
+                            <input type="text" [formControl]="cvc" class="form-control" id="idTxtCvcTarjeta"
+                                aria-describedby="emailHelp" placeholder="123" maxlength="3">
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <!-- <p>{{realizandoPago}}</p> -->
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnCancelarPago" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" id="btnPagar" class="btn btn-primary" (click)="getToken()">
+                    Pagar
+                    <div *ngIf="realizandoPago" class="spinner-border spinner-border-sm" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

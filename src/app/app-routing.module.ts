@@ -8,6 +8,7 @@ import { AutenticacionGuard } from './guards/autenticacion.guard';
 import { RegistrarUsuarioComponent } from './componentes/registrar-usuario/registrar-usuario.component';
 import { BolidoListaDeNumerosComponent } from './componentes/loterias/bolido/bolido-lista-de-numeros/bolido-lista-de-numeros.component';
 import { DiariaListaDeNumerosComponent } from './componentes/loterias/diaria/diaria-lista-de-numeros/diaria-lista-de-numeros.component';
+import { PruebaComponent } from './componentes/prueba/prueba.component';
 
 
 const routes: Routes = [
@@ -44,6 +45,10 @@ const routes: Routes = [
   {
     path: 'loterias/diaria/lista-de-numeros',
     component: DiariaListaDeNumerosComponent
+  },
+  {
+    path: 'test',
+    component: PruebaComponent
   }
 ];
 
