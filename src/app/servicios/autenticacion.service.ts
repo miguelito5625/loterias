@@ -6,7 +6,7 @@ import { Usuario } from '../clases/usuario';
 import { auth } from 'firebase';
 import { NodeSnackbarService } from './node-snackbar.service';
 import { JqueryConfirmService } from './jquery-confirm.service';
-import translate from 'translate';
+// import translate from 'translate';
 
 @Injectable({
   providedIn: 'root'
@@ -69,16 +69,16 @@ export class AutenticacionService {
       }).catch((error) => {
         // window.alert(error.message)
         modalCargando.close();
-        translate.engine = 'google';
-        translate.key = 'AIzaSyC753Q4lRbPglDsCKMVEN68qdsWT3spbJQ';
-        translate(error.message, 'es').then(data => {
-          this.servicioJqueryComfirm.mensajeDeError(data);
-        },
-          err => {
-            modalCargando.close();
-            console.log('error en la traduccion');
-            this.servicioJqueryComfirm.mensajeDeError('');
-          });
+        // translate.engine = 'google';
+        // translate.key = 'AIzaSyC753Q4lRbPglDsCKMVEN68qdsWT3spbJQ';
+        // translate(error.message, 'es').then(data => {
+        //   this.servicioJqueryComfirm.mensajeDeError(data);
+        // },
+        //   err => {
+        //     modalCargando.close();
+        //     console.log('error en la traduccion');
+        //     this.servicioJqueryComfirm.mensajeDeError('');
+        //   });
 
         // this.servicioJqueryComfirm.mensajeDeError(errorTraducido);
       })
@@ -145,16 +145,16 @@ export class AutenticacionService {
       }).catch((error) => {
         // window.alert(error.message)
         modalCargando.close();
-        translate.engine = 'google';
-        translate.key = 'AIzaSyC753Q4lRbPglDsCKMVEN68qdsWT3spbJQ';
-        translate(error.message, 'es').then(data => {
-          this.servicioJqueryComfirm.mensajeDeError(data);
-        },
-          err => {
-            modalCargando.close();
-            console.log('error en la traduccion');
-            this.servicioJqueryComfirm.mensajeDeError('');
-          });
+        // translate.engine = 'google';
+        // translate.key = 'AIzaSyC753Q4lRbPglDsCKMVEN68qdsWT3spbJQ';
+        // translate(error.message, 'es').then(data => {
+        //   this.servicioJqueryComfirm.mensajeDeError(data);
+        // },
+        //   err => {
+        //     modalCargando.close();
+        //     console.log('error en la traduccion');
+        //     this.servicioJqueryComfirm.mensajeDeError('');
+        //   });
       })
 
 

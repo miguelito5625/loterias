@@ -21,7 +21,7 @@ import { BolidoListaDeNumerosComponent } from './componentes/loterias/bolido/bol
 import { DiariaListaDeNumerosComponent } from './componentes/loterias/diaria/diaria-lista-de-numeros/diaria-lista-de-numeros.component';
 
 //Modulo para relizar pagos con stripe
-import { NgxStripeModule } from 'ngx-stripe';
+// import { NgxStripeModule } from 'ngx-stripe';
 
 import { HttpClientModule } from '@angular/common/http';
 import { PruebaComponent } from './componentes/prueba/prueba.component';
@@ -48,7 +48,7 @@ import { PruebaComponent } from './componentes/prueba/prueba.component';
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
     ReactiveFormsModule,
-    NgxStripeModule.forRoot('pk_test_gjakUSGimfUPWxuvPuCkRJyK00WfJMQKJo'),
+    // NgxStripeModule.forRoot('pk_test_gjakUSGimfUPWxuvPuCkRJyK00WfJMQKJo'),
     HttpClientModule
   ],
   providers: [],
