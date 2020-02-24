@@ -16,7 +16,7 @@ export class BolidoListaDeNumerosComponent implements OnInit {
 
   constructor(
     private servicioNumeroBolido: NumerosBolidoService,
-    private servicioCarritoDeCompras: CarritoDeComprasService
+    public servicioCarritoDeCompras: CarritoDeComprasService
   ) { }
 
   ngOnInit() {

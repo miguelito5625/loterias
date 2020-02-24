@@ -16,7 +16,7 @@ export class DiariaListaDeNumerosComponent implements OnInit {
 
   constructor(
     private servicioNumeroDiaria: NumerosDiariaService,
-    private servicioCarritoDeCompras: CarritoDeComprasService
+    public servicioCarritoDeCompras: CarritoDeComprasService
   ) { }
 
   ngOnInit() {

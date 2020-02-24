@@ -1,9 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { CarritoDeComprasService } from 'src/app/servicios/carrito-de-compras.service';
 import { ItemCarrito } from 'src/app/clases/item-carrito';
-import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { PagoStripe } from 'src/app/clases/pago-stripe';
-import { StripeService, Elements, Element as StripeElement, ElementsOptions } from "ngx-stripe";
+import { FormControl, FormBuilder, Validators } from '@angular/forms';
 import { JqueryConfirmService } from 'src/app/servicios/jquery-confirm.service';
 
 
@@ -16,7 +14,6 @@ declare var $: any;
 })
 export class CarritoComprasComponent implements OnInit {
 
-  // itemsDelCarrito: ItemCarrito[];
 
   //datos al azar para evitar un error mientras descarga los datos
   numeroSeleccionado: ItemCarrito = {
@@ -31,68 +28,17 @@ export class CarritoComprasComponent implements OnInit {
   txtCantidadAGanar = new FormControl('80');
   txtLoteria = new FormControl('');
 
-  //Elementos stripe
-  elements: Elements;
-  // card: StripeElement;
-
-  // // optional parameters
-  // elementsOptions: ElementsOptions = {
-  //   locale: 'es'
-  // };
-
-  // stripeTest: FormGroup;
-
   constructor(
-    private servicioCarritoDeCompras: CarritoDeComprasService,
+    public servicioCarritoDeCompras: CarritoDeComprasService,
     private fb: FormBuilder,
-    private stripeService: StripeService,
     private _ngZone: NgZone,
     private jqueryConfirm: JqueryConfirmService
   ) { }
 
   ngOnInit() {
-    // console.log(localStorage.getItem('correo'));
-    // this.itemsDelCarrito = this.servicioCarritoDeCompras.obtenerItemsDelCarrito();
-    // console.log(this.itemsDelCarrito);
-
-    //Stripe
-    // this.stripeTest = this.fb.group({
-    //   name: ['', [Validators.required]]
-    // });
-    // this.stripeService.elements(this.elementsOptions)
-    //   .subscribe(elements => {
-    //     this.elements = elements;
-    //     // Only mount the element the first time
-    //     if (!this.card) {
-    //       this.card = this.elements.create('card', {
-    //         style: {
-    //           base: {
-    //             iconColor: '#666EE8',
-    //             color: '#31325F',
-    //             lineHeight: '40px',
-    //             fontWeight: 300,
-    //             fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-    //             fontSize: '18px',
-    //             '::placeholder': {
-    //               color: '#CFD7E0'
-    //             }
-    //           }
-    //         }
-    //       });
-    //       this.card.mount('#card-element');
-    //     }
-    //   });
-
-    // $('#modalRealizarPago').modal('show');
-
-    // $('#modalRealizarPago').modal({
-    //   show: true,
-    //   keyboard: false,
-    //   backdrop: 'static'
-    // });
-    // $('#idTxtNombreTarjeta').addClass('is-invalid');
-    this.formatoTarjeta();
     
+    this.formatoTarjeta();
+
   }
 
   convertirACentavos(value) {
@@ -100,7 +46,7 @@ export class CarritoComprasComponent implements OnInit {
     if (value && value.includes('.')) {
       value = value.substring(0, value.indexOf('.') + 3);
     }
-  
+
     return value ? Math.round(parseFloat(value) * 100) : 0;
   }
 
@@ -112,12 +58,12 @@ export class CarritoComprasComponent implements OnInit {
   expiryYear = new FormControl('22');
   cvc = new FormControl('569');
 
-  abrirModalPago(){
-    console.log(this.servicioCarritoDeCompras.totalAPagar);
-    
-    if(Number(this.servicioCarritoDeCompras.totalAPagar) < Number(10.00)){
+  abrirModalPago() {
+    // console.log(this.servicioCarritoDeCompras.totalAPagar);
+
+    if (Number(this.servicioCarritoDeCompras.totalAPagar) < Number(10.00)) {
       console.log('menor');
-      
+
       this.jqueryConfirm.mensajeDeError('Debe gastar un minimo de Q10');
       return;
     }
@@ -130,7 +76,7 @@ export class CarritoComprasComponent implements OnInit {
 
   getToken() {
     // this.message = 'Loading...';
-    
+
     this.realizandoPago = true;
     $('#btnPagar').attr("disabled", true);
     $('#btnCancelarPago').attr("disabled", true);
@@ -200,10 +146,8 @@ export class CarritoComprasComponent implements OnInit {
   }
 
 
-
+  //Metodo para para formatear numeros de la tarjeta
   formatoTarjeta() {
-    // let numeros = $('#idTxtNumeroTarjeta').val();
-    // console.log(numeros.length);
     $("#idTxtNumeroTarjeta").on("keydown", function (e) {
       var cursor = this.selectionStart;
       if (this.selectionEnd != cursor) return;
@@ -233,45 +177,6 @@ export class CarritoComprasComponent implements OnInit {
   }
 
 
-  // buy() {
-  //   const name = this.stripeTest.get('name').value;
-  //   this.stripeService
-  //     .createToken(this.card, { name })
-  //     .subscribe(result => {
-  //       if (result.token) {
-  //         // Use the token to create a charge or a customer
-  //         // https://stripe.com/docs/charges
-  //         console.log(result.token);
-
-  //         this.servicioCarritoDeCompras.pagoConStripe({
-  //           stripeName: name,
-  //           stripeToken: result.token.id,
-  //           monto: '4000',
-  //           moneda: 'GTQ',
-  //           descripcion: 'compra de numeros'
-  //         }).subscribe(res =>{
-  //           console.log(res);
-  //         });
-
-  //       } else if (result.error) {
-  //         // Error creating the token
-  //         console.log(result.error.message);
-  //       }
-  //     });
-  // }
-
-  pagarConStripe() {
-    // let pagoStripe: PagoStripe = {
-    //   descripcion: 'pago numeros',
-    //   moneda: 'GTQ',
-    //   montoDePago: String(this.servicioCarritoDeCompras.totalAPagar),
-    //   stripeEmail: this.email,
-    //   stripeToken: this.tokenid
-    // };
-    console.log('pagoStripe');
-
-  }
-
   detalleItemDelCarrito(item: ItemCarrito) {
     console.log(item);
     this.numeroSeleccionado = item;
@@ -291,12 +196,8 @@ export class CarritoComprasComponent implements OnInit {
   }
 
   actualizarCarrito() {
-
     let pos = this.servicioCarritoDeCompras.itemsEnElCarrito.map(function (e) { return e; }).indexOf(this.numeroSeleccionado);
-    // console.log(pos);
-
     this.servicioCarritoDeCompras.actualizarItemCarrito(pos, this.txtCantidadAComprar.value, this.txtCantidadAGanar.value);
-
     $('#modalDetalleNumero').modal('hide');
   }
 
@@ -305,10 +206,5 @@ export class CarritoComprasComponent implements OnInit {
     let pos = this.servicioCarritoDeCompras.itemsEnElCarrito.map(function (e) { return e; }).indexOf(item);
     this.servicioCarritoDeCompras.eliminarItemCarrito(pos);
   }
-
-  realizarElPago() {
-    alert('Funcion no disponible');
-  }
-
 
 }

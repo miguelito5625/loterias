@@ -26,6 +26,7 @@
     "jquery-confirm": "^3.3.4",
     "ng-connection-service": "^1.0.4",
     "ngx-stripe": "^7.4.4",
+    "node-fetch": "^2.6.0",
     "node-snackbar": "^0.1.16",
     "popper.js": "^1.16.1",
     "rxjs": "~6.4.0",

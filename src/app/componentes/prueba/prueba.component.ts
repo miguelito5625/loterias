@@ -12,7 +12,7 @@ declare var $: any;
 export class PruebaComponent implements OnInit {
 
   constructor(
-    private servicioCarritoDeCompras: CarritoDeComprasService,
+    public servicioCarritoDeCompras: CarritoDeComprasService,
     private _ngZone: NgZone
   ) { }
 
