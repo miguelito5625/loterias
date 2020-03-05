@@ -17,14 +17,16 @@ export class RegistrarUsuarioComponent implements OnInit {
   }
 
   formularioRegistro = new FormGroup({
+    nombreUsuario: new FormControl(''),
     correo: new FormControl(''),
     password: new FormControl('')
   });
 
   registrarUsuario(){
 
-    var correo = this.formularioRegistro.controls.correo.value;
-    var password = this.formularioRegistro.controls.password.value;
+    let correo = this.formularioRegistro.controls.correo.value;
+    let password = this.formularioRegistro.controls.password.value;
+    let nombreUsuario = this.formularioRegistro.controls.nombreUsuario.value;
 
     this.servicioAutenticacion.registroUsuario(correo, password);
   }

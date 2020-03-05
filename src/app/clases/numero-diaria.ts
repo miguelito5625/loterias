@@ -1,4 +1,4 @@
-export interface NumeroDiaria {
+export class NumeroDiaria {
     uid: string;
     numero: string;
     habilitado: boolean;

@@ -1,48 +1,55 @@
 <!-- <p>carrito-compras works!</p> -->
 
-<h2 class="text-center">Carrito</h2>
+<!-- <h2 class="text-center">Carrito</h2> -->
 
 
-<ul class="list-group list-group-flush mb-3">
+<div class="col-sm-12 col-md-12 col-lg-6 mr-auto ml-auto">
+    <ul class="list-group list-group-flush mb-3">
 
-    <li class="list-group-item">
-
-        <div class="card">
-            <h5 class="card-header text-center">Total a pagar: Q{{this.servicioCarritoDeCompras.totalAPagar}}</h5>
-            <div class="card-body">
-                <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
-                <!-- <h5 class="card-subtitle mb-2 text-muted">Loteria: {{item.loteria}}</h5> -->
-                <h5 class="card-subtitle mb-2 text-muted">Numeros a comprar:
-                    {{this.servicioCarritoDeCompras.itemsEnElCarrito.length}}</h5>
-                <!-- <h5 class="card-subtitle mb-2 text-muted">Premio: Q{{item.premio}}</h5> -->
-                <!-- <button class="btn btn-danger mr-3" (click)="eliminarItemCarrito(item)">Quitar</button> -->
-                <div class="d-flex justify-content-center">
-                    <button class="btn btn-primary" (click)="abrirModalPago()">Pagar <i class="far fa-credit-card"></i></button>
+        <li class="list-group-item p-0 mb-2" style="border: 0;">
+    
+            <div class="card">
+                <h5 class="card-header text-center">Total a pagar: Q{{this.servicioCarritoDeCompras.totalAPagar}}</h5>
+                <div class="card-body">
+                    <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+                    <!-- <h5 class="card-subtitle mb-2 text-muted">Loteria: {{item.loteria}}</h5> -->
+                    <h5 class="card-subtitle mb-2 text-muted">Numeros a comprar:
+                        {{this.servicioCarritoDeCompras.itemsEnElCarrito.length}}</h5>
+                    <!-- <h5 class="card-subtitle mb-2 text-muted">Premio: Q{{item.premio}}</h5> -->
+                    <!-- <button class="btn btn-danger mr-3" (click)="eliminarItemCarrito(item)">Quitar</button> -->
+                    <div class="d-flex justify-content-center">
+                        <button class="btn btn-primary" (click)="abrirModalPago()">Pagar <i class="far fa-credit-card"></i></button>
+                    </div>
                 </div>
             </div>
-        </div>
+    
+        </li>
+    
 
-    </li>
+        
+        <li class="list-group-item p-0 mb-2" style="border: 0;">
+            <h2>Numeros en el carrito</h2>
+        </li>
 
-
-    <li *ngFor="let item of servicioCarritoDeCompras.itemsEnElCarrito" class="list-group-item">
-
-        <div class="card">
-            <h5 class="card-header text-center">{{item.loteria}} Numero: {{ item.numero }}</h5>
-            <div class="card-body">
-                <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
-                <!-- <h5 class="card-subtitle mb-2 text-muted">Loteria: {{item.loteria}}</h5> -->
-                <h5 class="card-subtitle mb-2 text-muted">Cantidad: Q{{item.cantidadComprado}}</h5>
-                <h5 class="card-subtitle mb-2 text-muted">Premio: Q{{item.premio}}</h5>
-                <button class="btn btn-danger mr-3" (click)="eliminarItemCarrito(item)">Quitar</button>
-                <button class="btn btn-success" (click)="detalleItemDelCarrito(item)">Editar</button>
+        <li *ngFor="let item of servicioCarritoDeCompras.itemsEnElCarrito" class="list-group-item p-0 pb-2 mb-2">
+    
+            <div class="card">
+                <h5 class="card-header text-center">{{item.loteria}} Numero: {{ item.numero }}</h5>
+                <div class="card-body">
+                    <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+                    <!-- <h5 class="card-subtitle mb-2 text-muted">Loteria: {{item.loteria}}</h5> -->
+                    <h5 class="card-subtitle mb-2 text-muted">Cantidad: Q{{item.cantidadComprado}}</h5>
+                    <h5 class="card-subtitle mb-2 text-muted">Premio: Q{{item.premio}}</h5>
+                    <button class="btn btn-danger mr-3" (click)="eliminarItemCarrito(item)">Quitar</button>
+                    <button class="btn btn-success" (click)="detalleItemDelCarrito(item)">Editar</button>
+                </div>
             </div>
-        </div>
-
-    </li>
-
-
-</ul>
+    
+        </li>
+    
+    
+    </ul>
+</div>
 
 
 <!-- Modal detalle numero -->

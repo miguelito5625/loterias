@@ -37,11 +37,12 @@ export class DiariaListaDeNumerosComponent implements OnInit {
   txtCantidadAGanar = new FormControl('80');
 
   //datos al azar para evitar un error mientras descarga los datos
-  numeroSeleccionado: NumeroDiaria = {
-    habilitado: true,
-    numero: '01',
-    uid: ''
-  };
+  // numeroSeleccionado: NumeroDiaria = {
+  //   habilitado: true,
+  //   numero: '01',
+  //   uid: ''
+  // };
+  numeroSeleccionado: NumeroDiaria = new NumeroDiaria();
 
   onKeyUpBuscarNumero() {
     if (this.busqueda.value == null) {

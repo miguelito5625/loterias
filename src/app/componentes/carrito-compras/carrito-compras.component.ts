@@ -113,6 +113,8 @@ export class CarritoComprasComponent implements OnInit {
             //Metodo para cambiar valor de variable cuando no funciona el metodo convencional
             this._ngZone.run(() => {
               this.realizandoPago = false;
+              this.servicioCarritoDeCompras.itemsEnElCarrito = [];
+              this.servicioCarritoDeCompras.totalAPagar = 0.0;
             });
           },
           err => {

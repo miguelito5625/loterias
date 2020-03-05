@@ -25,6 +25,10 @@ import { DiariaListaDeNumerosComponent } from './componentes/loterias/diaria/dia
 
 import { HttpClientModule } from '@angular/common/http';
 import { PruebaComponent } from './componentes/prueba/prueba.component';
+import { Diaria930ListaDeNumerosComponent } from './componentes/loterias/diaria/diaria930-lista-de-numeros/diaria930-lista-de-numeros.component';
+import { Diaria1330ListaDeNumerosComponent } from './componentes/loterias/diaria/diaria1330-lista-de-numeros/diaria1330-lista-de-numeros.component';
+import { Diaria2030ListaDeNumerosComponent } from './componentes/loterias/diaria/diaria2030-lista-de-numeros/diaria2030-lista-de-numeros.component';
+import { MenuLoteriaDiariaComponent } from './componentes/menus/menu-loteria-diaria/menu-loteria-diaria.component';
 
 
 
@@ -39,7 +43,11 @@ import { PruebaComponent } from './componentes/prueba/prueba.component';
     RegistrarUsuarioComponent,
     BolidoListaDeNumerosComponent,
     DiariaListaDeNumerosComponent,
-    PruebaComponent
+    PruebaComponent,
+    Diaria930ListaDeNumerosComponent,
+    Diaria1330ListaDeNumerosComponent,
+    Diaria2030ListaDeNumerosComponent,
+    MenuLoteriaDiariaComponent
   ],
   imports: [
     BrowserModule,

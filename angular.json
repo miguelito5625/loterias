@@ -36,7 +36,8 @@
               "node_modules/popper.js/dist/umd/popper.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "node_modules/node-snackbar/dist/snackbar.js",
-              "src/assets/fontawesome/js/all.js"
+              "src/assets/fontawesome/js/all.js",
+              "node_modules/translate/translate.js"
             ]
           },
           "configurations": {

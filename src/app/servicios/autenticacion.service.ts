@@ -7,6 +7,7 @@ import { auth } from 'firebase';
 import { NodeSnackbarService } from './node-snackbar.service';
 import { JqueryConfirmService } from './jquery-confirm.service';
 // import translate from 'translate';
+declare var translate:any;
 
 @Injectable({
   providedIn: 'root'
@@ -37,21 +38,8 @@ export class AutenticacionService {
     })
   }
 
-  // Sign in with email/password
-  SignIn(email, password) {
-    return this.afAuth.auth.signInWithEmailAndPassword(email, password)
-      .then((result) => {
-        this.ngZone.run(() => {
-          // this.router.navigate(['dashboard']);
-        });
-        this.SetUserData(result.user);
-      }).catch((error) => {
-        window.alert(error.message)
-      })
-  }
-
-  // Registro usuario con email/password
-  registroUsuario(email, password) {
+   // Registro usuario con email/password
+   registroUsuario(email, password) {
 
     var modalCargando = this.servicioJqueryComfirm.modalCargando();
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
@@ -69,63 +57,23 @@ export class AutenticacionService {
       }).catch((error) => {
         // window.alert(error.message)
         modalCargando.close();
-        // translate.engine = 'google';
-        // translate.key = 'AIzaSyC753Q4lRbPglDsCKMVEN68qdsWT3spbJQ';
-        // translate(error.message, 'es').then(data => {
-        //   this.servicioJqueryComfirm.mensajeDeError(data);
-        // },
-        //   err => {
-        //     modalCargando.close();
-        //     console.log('error en la traduccion');
-        //     this.servicioJqueryComfirm.mensajeDeError('');
-        //   });
+        translate.engine = 'google';
+        translate.key = 'AIzaSyC753Q4lRbPglDsCKMVEN68qdsWT3spbJQ';
+        translate(error.message, 'es').then(data => {
+          this.servicioJqueryComfirm.mensajeDeError(data);
+        },
+          err => {
+            modalCargando.close();
+            console.log('error en la traduccion');
+            this.servicioJqueryComfirm.mensajeDeError('');
+          });
 
         // this.servicioJqueryComfirm.mensajeDeError(errorTraducido);
       })
   }
 
-  // Send email verfificaiton when new user sign up
-  SendVerificationMail() {
-    return this.afAuth.auth.currentUser.sendEmailVerification()
-      .then(() => {
-        this.router.navigate(['verify-email-address']);
-      })
-  }
 
-  // Reset Forggot password
-  ForgotPassword(passwordResetEmail) {
-    return this.afAuth.auth.sendPasswordResetEmail(passwordResetEmail)
-      .then(() => {
-        window.alert('Password reset email sent, check your inbox.');
-      }).catch((error) => {
-        window.alert(error)
-      })
-  }
-
-  // Returns true when user is looged in and email is verified
-  get sesionActiva(): boolean {
-    const user = JSON.parse(localStorage.getItem('user'));
-    return (user !== null && user.emailVerified !== false) ? true : false;
-  }
-
-  // Sign in with Google
-  GoogleAuth() {
-    return this.AuthLogin(new auth.GoogleAuthProvider());
-  }
-
-  // Auth logic to run auth providers
-  AuthLogin(provider) {
-    return this.afAuth.auth.signInWithPopup(provider)
-      .then((result) => {
-        this.ngZone.run(() => {
-          this.router.navigate(['dashboard']);
-        })
-        this.SetUserData(result.user);
-      }).catch((error) => {
-        window.alert(error)
-      })
-  }
-
+  //Inicio se sesion con email y password
   loginConCorreo(email: string, password: string) {
 
     var modalCargando = this.servicioJqueryComfirm.modalCargando();
@@ -133,7 +81,7 @@ export class AutenticacionService {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then((result) => {
 
-        this.SetUserData(result.user);
+        this.registrarInicioSesion(result.user);
 
         localStorage.setItem('sesionActiva', "true");
         localStorage.setItem('correo', result.user.email);
@@ -145,30 +93,32 @@ export class AutenticacionService {
       }).catch((error) => {
         // window.alert(error.message)
         modalCargando.close();
-        // translate.engine = 'google';
-        // translate.key = 'AIzaSyC753Q4lRbPglDsCKMVEN68qdsWT3spbJQ';
-        // translate(error.message, 'es').then(data => {
-        //   this.servicioJqueryComfirm.mensajeDeError(data);
-        // },
-        //   err => {
-        //     modalCargando.close();
-        //     console.log('error en la traduccion');
-        //     this.servicioJqueryComfirm.mensajeDeError('');
-        //   });
+        translate.engine = 'google';
+        translate.key = 'AIzaSyC753Q4lRbPglDsCKMVEN68qdsWT3spbJQ';
+        translate(error.message, 'es').then(data => {
+          this.servicioJqueryComfirm.mensajeDeError(data);
+        },
+          err => {
+            modalCargando.close();
+            console.log('error en la traduccion');
+            this.servicioJqueryComfirm.mensajeDeError('');
+          });
       })
 
 
   }
 
+
+  //Metodo para obtener todos los usuarios
   obtenerUsuarios() {
     return this.afs.collection('users').snapshotChanges();
   }
 
-  /* Setting up user data when sign in with username/password, 
-  sign up with username/password and sign in with social auth  
-  provider in Firestore database using AngularFirestore + AngularFirestoreDocument service */
+  //Actualiza los datos de usuarios guardados
   SetUserData(user) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
+    // console.log(userRef);
+    
     const userData: Usuario = {
       uid: user.uid,
       email: user.email,
@@ -177,8 +127,20 @@ export class AutenticacionService {
       emailVerified: user.emailVerified,
       ultimoInicioDeSesion: Date()
     }
+
     console.log(userData);
 
+    return userRef.set(userData, {
+      merge: true
+    })
+  }
+
+  //Actualiza lo datos del ultimo inicio de sesion
+  registrarInicioSesion(user) {
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);    
+    const userData = {
+      ultimoInicioDeSesion: Date()
+    }
     return userRef.set(userData, {
       merge: true
     })
@@ -195,4 +157,69 @@ export class AutenticacionService {
       this.servicioSnackbar.mostrarSnackBarArriba('Sesion cerrada');
     })
   }
+
+
+
+  // Lo de abajo se utilizara a futuro //////////////////////////////////////////////////////////////////////////////////////////////////
+
+  // Send email verfificaiton when new user sign up
+  // SendVerificationMail() {
+  //   return this.afAuth.auth.currentUser.sendEmailVerification()
+  //     .then(() => {
+  //       this.router.navigate(['verify-email-address']);
+  //     })
+  // }
+
+
+  // Sign in with email/password
+  // SignIn(email, password) {
+  //   return this.afAuth.auth.signInWithEmailAndPassword(email, password)
+  //     .then((result) => {
+  //       this.ngZone.run(() => {
+  //         // this.router.navigate(['dashboard']);
+  //       });
+  //       this.SetUserData(result.user);
+  //     }).catch((error) => {
+  //       window.alert(error.message)
+  //     })
+  // }
+
+ 
+  // Reset Forggot password
+  // ForgotPassword(passwordResetEmail) {
+  //   return this.afAuth.auth.sendPasswordResetEmail(passwordResetEmail)
+  //     .then(() => {
+  //       window.alert('Password reset email sent, check your inbox.');
+  //     }).catch((error) => {
+  //       window.alert(error)
+  //     })
+  // }
+
+  // Returns true when user is looged in and email is verified
+  // get sesionActiva(): boolean {
+  //   const user = JSON.parse(localStorage.getItem('user'));
+  //   return (user !== null && user.emailVerified !== false) ? true : false;
+  // }
+
+  // Sign in with Google
+  // GoogleAuth() {
+  //   return this.AuthLogin(new auth.GoogleAuthProvider());
+  // }
+
+  // Auth logic to run auth providers
+  // AuthLogin(provider) {
+  //   return this.afAuth.auth.signInWithPopup(provider)
+  //     .then((result) => {
+  //       this.ngZone.run(() => {
+  //         this.router.navigate(['dashboard']);
+  //       })
+  //       this.SetUserData(result.user);
+  //     }).catch((error) => {
+  //       window.alert(error)
+  //     })
+  // }
+
+
+
+
 }

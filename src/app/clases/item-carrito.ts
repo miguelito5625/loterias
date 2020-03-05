@@ -1,4 +1,4 @@
-export interface ItemCarrito {
+export class ItemCarrito {
     uid: string;
     numero: string;
     cantidadComprado: string;

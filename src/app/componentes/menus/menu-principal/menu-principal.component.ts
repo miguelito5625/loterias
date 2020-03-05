@@ -40,7 +40,7 @@ export class MenuPrincipalComponent implements OnInit {
     {
       titulo: 'Diaria',
       urlImagen: '/assets/imagenes/logos/diaria-logo.png',
-      urlRedireccion: '/loterias/diaria/lista-de-numeros',
+      urlRedireccion: '/loterias/diaria',
       habilitado: true
     }
   ]

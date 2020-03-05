@@ -5,15 +5,21 @@
     <div class="card-body">
 
         <form [formGroup]="formularioRegistro">
+
+          <div class="form-group">
+              <label for="idTxtNombreUsuario">Nombre Completo</label>
+              <input type="text" class="form-control" id="idTxtNombreUsuario" aria-describedby="emailHelp" formControlName="nombreUsuario">
+            </div>
+
             <div class="form-group">
-              <label for="exampleInputEmail1">Correo</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="correo">
+              <label for="idTxtCorreoUsuario">Correo</label>
+              <input type="email" class="form-control" id="idTxtCorreoUsuario" aria-describedby="emailHelp" formControlName="correo">
               <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
             </div>
 
             <div class="form-group">
-              <label for="exampleInputPassword1">Contraseña</label>
-              <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password">
+              <label for="idTxtPassword">Contraseña</label>
+              <input type="password" class="form-control" id="idTxtPassword" formControlName="password">
             </div>
             
             <div class="d-flex flex-row-reverse">

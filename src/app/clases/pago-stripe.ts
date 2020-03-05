@@ -1,4 +1,4 @@
-export interface PagoStripe {
+export class PagoStripe {
     stripeToken: string;
     stripeEmail: string;
     montoDePago: string;

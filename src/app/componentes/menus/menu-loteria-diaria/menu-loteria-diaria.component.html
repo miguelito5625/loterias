@@ -1,0 +1,41 @@
+
+<h3 class="text-center">Horarios loteria diaria</h3>
+
+<div class="row">
+
+    <div class="col-sm-12 col-md-6 col-lg-4" *ngFor="let item of itemsDelMenu">
+
+        <div class="card mr-auto ml-auto mb-2" style="width: 18rem;">
+    
+            <img src="{{ item.urlImagen}}"
+                class="card-img-top" alt="...">
+    
+            <div class="card-body">
+    
+                <!-- <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                    content.</p> -->
+    
+                    <div *ngIf="item.habilitado" class="d-flex flex-row-reverse">
+    
+                        <button routerLink="{{ item.urlRedireccion }}" class="btn btn-primary" style="color: white;">Comprar numeros</button>
+    
+                    </div>
+
+                    <div *ngIf="!item.habilitado" class="d-flex flex-row-reverse">
+    
+                        <button class="btn btn-primary" style="color: white;" disabled>Comprar numeros</button>
+    
+                    </div>
+                    
+                
+    
+            </div>
+    
+        </div>
+    
+    </div>
+    
+   
+
+</div>

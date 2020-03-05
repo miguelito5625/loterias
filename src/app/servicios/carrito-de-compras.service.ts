@@ -27,10 +27,17 @@ export class CarritoDeComprasService {
       numero: '21',
       cantidadComprado: '10',
       premio: '80'
+    },
+    {
+      uid: '',
+      loteria: 'Bolido',
+      numero: '05',
+      cantidadComprado: '10',
+      premio: '80'
     }
   ];
 
-  totalAPagar: number = 10.00;
+  totalAPagar: number = 20.00;
 
   async agregarAlCarrito(item: ItemCarrito) {
 
@@ -81,7 +88,9 @@ export class CarritoDeComprasService {
     this.servicioSnackBar.mostrarSnackBarArriba('Numero eliminado');
   }
   
-  baseUrl = 'http://localhost:3000';
+  // baseUrl = 'http://localhost:3000';
+  baseUrl = 'https://us-central1-plasma-climber-239922.cloudfunctions.net/app';
+
 
   pagoConStripe(pagoStripe): Observable<PagoStripe>{
     return this.http.post<PagoStripe>(this.baseUrl + '/realizarpago', pagoStripe)

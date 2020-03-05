@@ -9,6 +9,7 @@ import { RegistrarUsuarioComponent } from './componentes/registrar-usuario/regis
 import { BolidoListaDeNumerosComponent } from './componentes/loterias/bolido/bolido-lista-de-numeros/bolido-lista-de-numeros.component';
 import { DiariaListaDeNumerosComponent } from './componentes/loterias/diaria/diaria-lista-de-numeros/diaria-lista-de-numeros.component';
 import { PruebaComponent } from './componentes/prueba/prueba.component';
+import { MenuLoteriaDiariaComponent } from './componentes/menus/menu-loteria-diaria/menu-loteria-diaria.component';
 
 
 const routes: Routes = [
@@ -41,6 +42,10 @@ const routes: Routes = [
   {
     path: 'loterias/bolido/lista-de-numeros',
     component: BolidoListaDeNumerosComponent
+  },
+  {
+    path: 'loterias/diaria',
+    component: MenuLoteriaDiariaComponent
   },
   {
     path: 'loterias/diaria/lista-de-numeros',

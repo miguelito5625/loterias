@@ -4,41 +4,47 @@
 <h2 class="text-center">Diaria</h2>
 
 
-<ul class="list-group mb-3">
+<div class="col-sm-12 col-md-12 col-lg-8 mr-auto ml-auto pr-0 pl-0">
 
-    <li class="list-group-item">
-        <div class="input-group">
-            <input type="number" [formControl]="busqueda" (keyup)="onKeyUpBuscarNumero()" class="form-control"
-                placeholder="Buscar...">
-            <div class="input-group-append">
-                <span class="input-group-text"><i class="fas fa-search"></i></span>
+    <ul class="list-group mb-3">
+
+        <li class="list-group-item">
+            <div class="input-group">
+                <input type="number" [formControl]="busqueda" (keyup)="onKeyUpBuscarNumero()" class="form-control"
+                    placeholder="Buscar...">
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                </div>
             </div>
-        </div>
-    </li>
-
-    <li *ngFor="let numero of numerosBuscados" class="list-group-item">
-
-        <div *ngIf="numero.habilitado" class="input-group input-group-lg">
-            <input readonly value="{{ numero.numero }}" type="text" class="form-control"
-                placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
-            <div class="input-group-append">
-                <button (click)="detalleVentaDelNumero(numero)" class="btn btn-primary" type="button"
-                    id="button-addon2">Comprar</button>
+        </li>
+    
+        <li *ngFor="let numero of numerosBuscados" class="list-group-item">
+    
+            <div *ngIf="numero.habilitado" class="input-group input-group-lg">
+                <input readonly value="{{ numero.numero }}" type="text" class="form-control"
+                    placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                    <button (click)="detalleVentaDelNumero(numero)" class="btn btn-primary" type="button"
+                        id="button-addon2">Comprar</button>
+                </div>
             </div>
-        </div>
-
-        <div *ngIf="!numero.habilitado" class="input-group input-group-lg">
-            <input readonly value="{{ numero.numero }}" type="text" class="form-control"
-                placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
-            <div class="input-group-append">
-                <button class="btn btn-secondary" type="button" id="button-addon2" disabled>Comprar</button>
+    
+            <div *ngIf="!numero.habilitado" class="input-group input-group-lg">
+                <input readonly value="{{ numero.numero }}" type="text" class="form-control"
+                    placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-secondary" type="button" id="button-addon2" disabled>Comprar</button>
+                </div>
             </div>
-        </div>
+    
+        </li>
+    
+    
+    </ul>
+    
 
-    </li>
+</div>
 
-
-</ul>
 
 
 <div *ngIf="!datosListos" class="text-center">
